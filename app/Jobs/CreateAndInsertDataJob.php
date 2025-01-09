@@ -35,7 +35,7 @@ class CreateAndInsertDataJob implements ShouldQueue
             $authors = Author::query()->get();
             $faker = Factory::create();
             $data = [];
-            for ($i = 0; $i < 150000; $i++) {
+            for ($i = 0; $i < 100; $i++) {
                 $date = $faker->dateTimeThisMonth();
                 $data[] = [
                     'title' => $faker->paragraph(2),
