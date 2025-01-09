@@ -21,51 +21,53 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
-    elasticsearch:
-        image: 'docker.elastic.co/elasticsearch/elasticsearch:8.10.0'
-        environment:
-            ES_JAVA_OPTS: '-Xmx4g -Xms4g'
-        ports:
-            - '9200:9200'
-            - '9300:9300'
-        volumes:
-#            - 'elasticsearch-data-vol:/usr/share/elasticsearch/data'
-            - './elasticsearch/custom.yml:/usr/share/elasticsearch/config/elasticsearch.yml'
-        networks:
-            - sail
-        healthcheck:
-            test:
-                - CMD
-                - curl
-                - '-f'
-                - 'http://api.elasticsearch:9200'
-            interval: 30s
-            retries: 3
-            start_period: 60s
-            timeout: 10s
 
-#    manticoresearch:
-#        image: 'manticoresearch/manticore:latest'
-#        ports:
-#            - '9306:9306'  # Manticore MySQL protokolü
-#            - '9312:9312'  # Manticore Sphinx protokolü
-#            - '9308:9308'  # Manticore HTTP API protokolü
-#        volumes:
-#            - 'manticore-data-vol:/var/lib/manticore'
-#            - './manticore/manticore.conf:/etc/manticoresearch/manticore.conf'
-#        networks:
-#            - sail
-#        depends_on:
-#            - mysql
-#        healthcheck:
-#            test:
-#                - CMD
-#                - curl
-#                - '-f'
-#                - 'http://manticoresearch:9308'
-#            retries: 3
-#            interval: 30s
-#            timeout: 10s
+
+    #    elasticsearch:
+    #        image: 'docker.elastic.co/elasticsearch/elasticsearch:8.10.0'
+    #        environment:
+    #            ES_JAVA_OPTS: '-Xmx4g -Xms4g'
+    #        ports:
+    #            - '9200:9200'
+    #            - '9300:9300'
+    #        volumes:
+    ##            - 'elasticsearch-data-vol:/usr/share/elasticsearch/data'
+    #            - './elasticsearch/custom.yml:/usr/share/elasticsearch/config/elasticsearch.yml'
+    #        networks:
+    #            - sail
+    #        healthcheck:
+    #            test:
+    #                - CMD
+    #                - curl
+    #                - '-f'
+    #                - 'http://api.elasticsearch:9200'
+    #            interval: 30s
+    #            retries: 3
+    #            start_period: 60s
+    #            timeout: 10s
+
+    #    manticoresearch:
+    #        image: 'manticoresearch/manticore:latest'
+    #        ports:
+    #            - '9306:9306'  # Manticore MySQL protokolü
+    #            - '9312:9312'  # Manticore Sphinx protokolü
+    #            - '9308:9308'  # Manticore HTTP API protokolü
+    #        volumes:
+    #            - 'manticore-data-vol:/var/lib/manticore'
+    #            - './manticore/manticore.conf:/etc/manticoresearch/manticore.conf'
+    #        networks:
+    #            - sail
+    #        depends_on:
+    #            - mysql
+    #        healthcheck:
+    #            test:
+    #                - CMD
+    #                - curl
+    #                - '-f'
+    #                - 'http://manticoresearch:9308'
+    #            retries: 3
+    #            interval: 30s
+    #            timeout: 10s
 
     mysql:
         image: 'mysql/mysql-server:8.0'
