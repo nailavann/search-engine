@@ -32,15 +32,14 @@ class CreateAndInsertDataJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            Log::info('geldi');
             $authors = Author::query()->get();
             $faker = Factory::create();
             $data = [];
             for ($i = 0; $i < 150000; $i++) {
                 $date = $faker->dateTimeThisMonth();
                 $data[] = [
-                    'title' => $faker->sentence(4),
-                    'content' => $faker->paragraph(9),
+                    'title' => $faker->paragraph(2),
+                    'content' => $faker->paragraph(13),
                     'view_count' => $faker->numberBetween(100, 10000),
                     'answer_count' => $faker->numberBetween(10, 1000),
                     'author_id' => $authors->random()->id,
