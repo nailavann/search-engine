@@ -23,7 +23,7 @@ services:
             - sail
 
     elasticsearch:
-        image: 'docker.elastic.co/elasticsearch/elasticsearch:8.10.0'
+        image: 'elasticsearch:8.16.2'
         environment:
             ES_JAVA_OPTS: '-Xmx4g -Xms4g'
         ports:
