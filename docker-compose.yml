@@ -45,28 +45,18 @@ services:
         ports:
             - 5601:5601
 
-    #    manticoresearch:
-    #        image: 'manticoresearch/manticore:latest'
-    #        ports:
-    #            - '9306:9306'  # Manticore MySQL protokolü
-    #            - '9312:9312'  # Manticore Sphinx protokolü
-    #            - '9308:9308'  # Manticore HTTP API protokolü
-    #        volumes:
-    #            - 'manticore-data-vol:/var/lib/manticore'
-    #            - './manticore/manticore.conf:/etc/manticoresearch/manticore.conf'
-    #        networks:
-    #            - sail
-    #        depends_on:
-    #            - mysql
-    #        healthcheck:
-    #            test:
-    #                - CMD
-    #                - curl
-    #                - '-f'
-    #                - 'http://manticoresearch:9308'
-    #            retries: 3
-    #            interval: 30s
-    #            timeout: 10s
+    manticoresearch:
+        image: 'manticoresearch/manticore:latest'
+        ports:
+            - '9306:9306'
+            - '9312:9312'
+        volumes:
+            - 'manticore-data-vol:/var/lib/manticore'
+            - './manticore/manticore.conf:/etc/manticoresearch/manticore.conf'
+        networks:
+            - sail
+        depends_on:
+            - mysql
 
     mysql:
         image: 'mysql/mysql-server:8.0'
