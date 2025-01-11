@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\ElasticService;
-use App\Models\Article;
 use App\Models\LargeArticle;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 
 class ElasticSyncCommand extends Command
 {
@@ -36,7 +36,9 @@ class ElasticSyncCommand extends Command
      */
     public function handle()
     {
-        $indexName = 'articles';
+        $indexName = 'large_articles';
+
+        $startTime = Carbon::now();
 
         LargeArticle::with('author')->chunkById(5000, function ($articles) use ($indexName) {
             $bulkBody = [];
@@ -79,5 +81,10 @@ class ElasticSyncCommand extends Command
                 $this->error("\nError during bulk import: " . $e->getMessage());
             }
         });
+
+        $endTime = Carbon::now();
+
+        $executionTime = $startTime->diffInSeconds($endTime);
+        $this->info("\nBulk import completed in " . $executionTime . " seconds.");
     }
 }

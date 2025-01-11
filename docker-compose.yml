@@ -26,9 +26,6 @@ services:
         image: 'elasticsearch:8.16.2'
         environment:
             ES_JAVA_OPTS: '-Xmx4g -Xms4g'
-        ports:
-            - '9200:9200'
-            - '9300:9300'
         volumes:
             - 'elasticsearch-data-vol:/usr/share/elasticsearch/data'
             - './elasticsearch/custom.yml:/usr/share/elasticsearch/config/elasticsearch.yml'
