@@ -31,7 +31,7 @@ class CreateIndexCommand extends Command
 
     public function handle()
     {
-        $indexName = 'articles';
+        $indexName = 'large_articles';
 
         $mapping = [
             'settings' => [
