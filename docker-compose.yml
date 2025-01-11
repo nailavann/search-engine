@@ -106,5 +106,7 @@ volumes:
         driver: local
     kibana-data-vol:
         driver: local
+    manticore-data-vol:
+        driver: local
     sail-redis-vol:
         driver: local
