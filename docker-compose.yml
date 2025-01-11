@@ -22,29 +22,18 @@ services:
         networks:
             - sail
 
-
-    #    elasticsearch:
-    #        image: 'docker.elastic.co/elasticsearch/elasticsearch:8.10.0'
-    #        environment:
-    #            ES_JAVA_OPTS: '-Xmx4g -Xms4g'
-    #        ports:
-    #            - '9200:9200'
-    #            - '9300:9300'
-    #        volumes:
-    ##            - 'elasticsearch-data-vol:/usr/share/elasticsearch/data'
-    #            - './elasticsearch/custom.yml:/usr/share/elasticsearch/config/elasticsearch.yml'
-    #        networks:
-    #            - sail
-    #        healthcheck:
-    #            test:
-    #                - CMD
-    #                - curl
-    #                - '-f'
-    #                - 'http://api.elasticsearch:9200'
-    #            interval: 30s
-    #            retries: 3
-    #            start_period: 60s
-    #            timeout: 10s
+    elasticsearch:
+        image: 'docker.elastic.co/elasticsearch/elasticsearch:8.10.0'
+        environment:
+            ES_JAVA_OPTS: '-Xmx4g -Xms4g'
+        ports:
+            - '9200:9200'
+            - '9300:9300'
+        volumes:
+            - 'elasticsearch-data-vol:/usr/share/elasticsearch/data'
+            - './elasticsearch/custom.yml:/usr/share/elasticsearch/config/elasticsearch.yml'
+        networks:
+            - sail
 
     #    manticoresearch:
     #        image: 'manticoresearch/manticore:latest'
@@ -92,19 +81,6 @@ services:
             retries: 3
             timeout: 5s
 
-#    phpmyadmin:
-#        depends_on:
-#            - mysql
-#        image: phpmyadmin/phpmyadmin
-#        restart: always
-#        ports:
-#            - '5555:80'
-#        environment:
-#            PMA_HOST: mysql
-#            MYSQL_USER: '${DB_USERNAME}'
-#            MYSQL_PASSWORD: '${DB_PASSWORD}'
-#        networks:
-#            - sail
     redis:
         image: 'redis:alpine'
         ports:
